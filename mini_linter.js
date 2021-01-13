@@ -19,5 +19,7 @@ const betterWords = storyWords.filter((word, index) => {
 // console.log(betterWords.length);
 
 const overUsedWordCount = arrayOfWords => {
-    
+    for (let i = 0; i < arrayOfWords.length; i++) {
+        
+    }
 }
