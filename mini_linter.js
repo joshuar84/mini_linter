@@ -9,17 +9,44 @@ const storyWords = story.split(' ');
 // console.log(storyWords.length);
 
 const betterWords = storyWords.filter((word, index) => {
-    if (unnecessaryWords.includes(word)) {
-        console.log('Unnecessary word: ', word);
-    } else {
+    if (!unnecessaryWords.includes(word)) {
         return word;
     };
 });
 
-// console.log(betterWords.length);
+// betterWords.forEach((word) => {
+//     console.log(word);
+// })
 
 const overUsedWordCount = arrayOfWords => {
+    let arrOfEachOverUsed = [];
     for (let i = 0; i < arrayOfWords.length; i++) {
-        
-    }
-}
+        if(overusedWords.includes(arrayOfWords[i])) {
+            let wordIndex = overusedWords.findIndex((word) => {
+                return word === arrayOfWords[i]
+            });
+            let word = overusedWords[wordIndex];
+            arrOfEachOverUsed.push(word);
+        };
+    };
+    return arrOfEachOverUsed;
+};
+
+const arrOfEachWord = overUsedWordCount(betterWords);
+
+// console.log(arrOfEachWord);
+
+const arrayIntoObject = arrayOfWords => {
+    const object = {};
+    arrayOfWords.forEach((word) => {
+        if (!(word in object)) {
+            object[word] = 1;
+        } else {
+            object[word] = object[word] + 1;
+        };
+    });
+    return object;
+};
+
+const objectWithWordCount = arrayIntoObject(arrOfEachWord);
+console.log(objectWithWordCount);
