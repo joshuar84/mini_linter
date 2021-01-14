@@ -109,3 +109,13 @@ const betterStoryWords = betterWords.join(' ');
 
 // Logs to the console betterStoryWords
 console.log(betterStoryWords);
+
+/**Congratulations! You’ve improved the original paragraph and given the user some important information about his or her work. Think about ways in which you can extend this project, potentially by using other JavaScript knowledge you have.
+
+Here are some ideas:
+
+For the overused words, remove it every other time it appears.
+
+Write a function that finds the word that appears the greatest number of times.
+
+Replaced overused words with something else. */
