@@ -12,7 +12,7 @@ let unnecessaryWords = ["extremely", "literally", "actually"];
 const storyWords = story.split(" ");
 
 // Logging to the console the word count
-console.log(storyWords.length);
+console.log(`Your original story had ${storyWords.length} words.`);
 
 // Array of story words with unnecessay words filtered out
 const betterWords = storyWords.filter((word) => {
@@ -21,8 +21,8 @@ const betterWords = storyWords.filter((word) => {
     };
 });
 
-// Logging to the console the word count of betterWords array
-console.log(betterWords.length);
+// Save to a variable the word count of betterWords array
+const betterWordsCount = betterWords.length;
 
 // This function takes in an array of words and returns a new array of each word that is in the overUsedWords array
 const overUsedWordCount = (arrayOfWords) => {
@@ -58,18 +58,20 @@ const arrayIntoObject = (arrayOfWords) => {
 // Saved the return value of calling arrayIntoObject function with arrOfEachWord as an argument
 const objectWithWordCount = arrayIntoObject(arrOfEachWord);
 
-// This function takes in an object with words as the key and logs to the console how many times they used each word which is the values of the keys.
+// This function takes in an object with words as the key and returns an array of strings of how many times they used each word which is the values of the keys.
 const objIntoStrings = obj => {
+    let array = []
     for (let key in obj) {
-        console.log(`You used the word ${key} ${obj[key]} time(s).`);
+        array.push(`You used the word ${key} ${obj[key]} time(s).`);
     };
+    return array;
 };
 
-// calls a function that takes in an object with words as keys and word count as the values and logs to the console how many times they used each word.
-objIntoStrings(objectWithWordCount);
+// calls a function that takes in an object with words as keys and word count as the values and returns how many times they used each word and saved it to a variable.
+const overUsedWordsStrings = objIntoStrings(objectWithWordCount);
 
 // This function takes in an array of words and counts how many periods(.) and exclamation points(!) there, effectively counting the sentences.
-const sentenceCounter = arrOfWords => {
+const sentenceCounterFunc = arrOfWords => {
     const period = '.';
     const exclmPoint = '!';
     let count = 0;
@@ -82,7 +84,5 @@ const sentenceCounter = arrOfWords => {
 };
 
 // Saved into a variable the return value of calling sentenceCounter with betterWords as an argument
-const sntncCntr = sentenceCounter(betterWords);
+const sentenceCount = sentenceCounterFunc(betterWords);
 
-// Console logging sntncCntr
-console.log(sntncCntr);
