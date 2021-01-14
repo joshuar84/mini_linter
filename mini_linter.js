@@ -101,4 +101,11 @@ const loggingFunction = (wordCount, sentenceCount, arrayOfStrings) => {
     });
 };
 
+// Calls the above function with the appropriate variables as arguments
 loggingFunction(betterWordsCount, sentenceCount, overUsedWordsStrings);
+
+// Turns betterWords array into a string and saves it into a variable
+const betterStoryWords = betterWords.join(' ');
+
+// Logs to the console betterStoryWords
+console.log(betterStoryWords);
