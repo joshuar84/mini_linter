@@ -86,3 +86,19 @@ const sentenceCounterFunc = arrOfWords => {
 // Saved into a variable the return value of calling sentenceCounter with betterWords as an argument
 const sentenceCount = sentenceCounterFunc(betterWords);
 
+/**This function will need the following variables as parameters;
+ * 
+ * betterWordsCount - a number,
+ * sentenceCount -  a number,
+ * overUsedWordsString - an array of strings
+ * 
+ * Will take all these variables and logs them all to the console in a formatted string.
+ */
+const loggingFunction = (wordCount, sentenceCount, arrayOfStrings) => {
+    console.log(`Your new word count is ${wordCount}.\nYour sentence count is ${sentenceCount}.`);
+    arrayOfStrings.forEach((string) => {
+        console.log(string);
+    });
+};
+
+loggingFunction(betterWordsCount, sentenceCount, overUsedWordsStrings);
