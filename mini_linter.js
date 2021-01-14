@@ -11,12 +11,18 @@ let unnecessaryWords = ["extremely", "literally", "actually"];
 // Array of each word in the story
 const storyWords = story.split(" ");
 
+// Logging to the console the word count
+console.log(storyWords.length);
+
 // Array of story words with unnecessay words filtered out
 const betterWords = storyWords.filter((word) => {
     if (!unnecessaryWords.includes(word)) {
         return word;
-    }
+    };
 });
+
+// Logging to the console the word count of betterWords array
+console.log(betterWords.length);
 
 // This function takes in an array of words and returns a new array of each word that is in the overUsedWords array
 const overUsedWordCount = (arrayOfWords) => {
@@ -51,4 +57,13 @@ const arrayIntoObject = (arrayOfWords) => {
 
 // Saved the return value of calling arrayIntoObject function with arrOfEachWord as an argument
 const objectWithWordCount = arrayIntoObject(arrOfEachWord);
-console.log(objectWithWordCount);
+
+// This function takes in an object with words as the key and logs to the console how many times they used each word which is the values of the keys.
+const objIntoStrings = obj => {
+    for (let key in obj) {
+        console.log(`You used the word ${key} ${obj[key]} time(s).`);
+    };
+};
+
+// calls a function that takes in an object with words as keys and word count as the values and logs to the console how many times they used each word.
+objIntoStrings(objectWithWordCount);
