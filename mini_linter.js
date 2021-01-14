@@ -67,3 +67,22 @@ const objIntoStrings = obj => {
 
 // calls a function that takes in an object with words as keys and word count as the values and logs to the console how many times they used each word.
 objIntoStrings(objectWithWordCount);
+
+// This function takes in an array of words and counts how many periods(.) and exclamation points(!) there, effectively counting the sentences.
+const sentenceCounter = arrOfWords => {
+    const period = '.';
+    const exclmPoint = '!';
+    let count = 0;
+    arrOfWords.forEach((word) => {
+        if (word[word.length - 1] === period || word[word.length - 1] === exclmPoint) {
+            count++;
+        };
+    });
+    return count;
+};
+
+// Saved into a variable the return value of calling sentenceCounter with betterWords as an argument
+const sntncCntr = sentenceCounter(betterWords);
+
+// Console logging sntncCntr
+console.log(sntncCntr);
