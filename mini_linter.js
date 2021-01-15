@@ -15,6 +15,7 @@ const storyWords = story.split(" ");
 console.log(`Your original story had ${storyWords.length} words.`);
 
 // Array of story words with unnecessay words filtered out
+// Much more readable than my unnecessaryWords.indexOf(word) === -1, really like it
 const betterWords = storyWords.filter((word) => {
     if (!unnecessaryWords.includes(word)) {
         return word;
@@ -25,6 +26,7 @@ const betterWords = storyWords.filter((word) => {
 const betterWordsCount = betterWords.length;
 
 // This function takes in an array of words and returns a new array of each word that is in the overUsedWords array
+// Good use of overusedWords from the global scope
 const overUsedWordCount = (arrayOfWords) => {
     let arrOfEachOverUsed = [];
     for (let i = 0; i < arrayOfWords.length; i++) {
@@ -40,29 +42,48 @@ const overUsedWordCount = (arrayOfWords) => {
 };
 
 // Saved the return value of calling the overUsedWordCount function with betterWords as an argument
-const arrOfEachWord = overUsedWordCount(betterWords);
+// REMOVED below, no need to call this helper function into the global scope
+//const arrOfEachWord = overUsedWordCount(betterWords);
 
 // Defined a function that takes an array of words and returns an object with the words as keys and the word count for each word as values
+// I think the count makes more sense as property of the overused word, I would be tempted to add more properties of these words in future versions, such as 'word location'.
+
+//const arrayIntoObject = (arrayOfWords) => {
+//    const object = {};
+//    arrayOfWords.forEach((word) => {
+//        if (!(word in object)) {       <----- I really like this method of conditional key creation and will be copying it  
+//            object[word] = 1;
+//        } else {
+//            object[word] = object[word] + 1;
+//        }
+//    });
+//    return object;
+//};
+
+// As above, refactored to make occurences a key-value pair in the object
 const arrayIntoObject = (arrayOfWords) => {
-    const object = {};
-    arrayOfWords.forEach((word) => {
-        if (!(word in object)) {
-            object[word] = 1;
+  let overusedArr = overUsedWordCount(arrayOfWords) //calling the helper function here and assigning it a value
+    const overUsedWordsObj = {};
+    overusedArr.forEach((word) => { // updated here to pick up the new `overusedArr ` object
+        if (!(word in overUsedWordsObj)) {
+            overUsedWordsObj[word] = {};
+            overUsedWordsObj[word].occurence = 1;
         } else {
-            object[word] = object[word] + 1;
+            overUsedWordsObj[word].occurence += 1;
         }
     });
-    return object;
+    return overUsedWordsObj;
+    
 };
 
 // Saved the return value of calling arrayIntoObject function with arrOfEachWord as an argument
-const objectWithWordCount = arrayIntoObject(arrOfEachWord);
+const objectWithWordCount = arrayIntoObject(betterWords); // updated to give the argument you need on line 30
 
 // This function takes in an object with words as the key and returns an array of strings of how many times they used each word which is the values of the keys.
 const objIntoStrings = obj => {
     let array = []
     for (let key in obj) {
-        array.push(`You used the word ${key} ${obj[key]} time(s).`);
+        array.push(`You used the word ${key} ${obj[key].occurence} time(s).`); //updated to get the nested value
     };
     return array;
 };
@@ -94,6 +115,7 @@ const sentenceCount = sentenceCounterFunc(betterWords);
  * 
  * Will take all these variables and logs them all to the console in a formatted string.
  */
+
 const loggingFunction = (wordCount, sentenceCount, arrayOfStrings) => {
     console.log(`Your new word count is ${wordCount}.\nYour sentence count is ${sentenceCount}.`);
     arrayOfStrings.forEach((string) => {
@@ -101,14 +123,17 @@ const loggingFunction = (wordCount, sentenceCount, arrayOfStrings) => {
     });
 };
 
+
 // Calls the above function with the appropriate variables as arguments
 loggingFunction(betterWordsCount, sentenceCount, overUsedWordsStrings);
+
 
 // Turns betterWords array into a string and saves it into a variable
 const betterStoryWords = betterWords.join(' ');
 
 // Logs to the console betterStoryWords
 console.log(betterStoryWords);
+
 
 /**Congratulations! You’ve improved the original paragraph and given the user some important information about his or her work. Think about ways in which you can extend this project, potentially by using other JavaScript knowledge you have.
 
@@ -119,3 +144,5 @@ For the overused words, remove it every other time it appears.
 Write a function that finds the word that appears the greatest number of times.
 
 Replaced overused words with something else. */
+
+// Overall I thought your code was great here, one change for the object and one change for the helper function
